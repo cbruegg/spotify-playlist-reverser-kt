@@ -12,8 +12,16 @@ jobs:
     name: build and upload release
     strategy:
       matrix:
-        os: [windows, macos, ubuntu]
-    runs-on: ${{ matrix.os }}-latest
+        os: [ windows-latest, macos-latest, ubuntu-latest ]
+        gu-binary: [ gu, gu.cmd ]
+        exclude:
+          - os: ubuntu-latest
+            gu-binary: gu.cmd
+          - os: macos-latest
+            gu-binary: gu.cmd
+          - os: windows-latest
+            gu-binary: gu
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: checkout
@@ -29,7 +37,7 @@ jobs:
 
       # (Optional) Install native-image
       - name: install native-image
-        run: gu install native-image
+        run: ${{ matrix.gu-binary }} install native-image
 
       - name: cache
         uses: actions/cache@v1
