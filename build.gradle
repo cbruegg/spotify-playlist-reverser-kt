@@ -11,6 +11,9 @@ version '1.0.0'
 def properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
 ext.graalVmHome = properties.getProperty("graalvm.home")
+if (ext.graalVmHome == null) {
+    ext.graalVmHome = System.getProperty('java.home')
+}
 
 repositories {
     mavenCentral()
