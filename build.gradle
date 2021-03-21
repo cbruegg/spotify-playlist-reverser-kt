@@ -1,10 +1,16 @@
 plugins {
     id 'java'
+    id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id 'org.mikeneck.graalvm-native-image' version 'v1.2.0'
 }
 
 group 'com.cbruegg'
 version '1.0-SNAPSHOT'
+
+def properties = new Properties()
+properties.load(project.rootProject.file("local.properties").newDataInputStream())
+ext.graalVmHome = properties.getProperty("graalvm.home")
 
 repositories {
     mavenCentral()
@@ -19,10 +25,34 @@ dependencies {
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
     implementation "com.adamratzman:spotify-api-kotlin-core:3.6.01"
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClassName "MainKt"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+nativeImage {
+    graalVmHome = ext.graalVmHome
+    mainClass = application.mainClassName
+    executableName = project.name
+    outputDirectory = file("$buildDir/bin")
+    arguments {
+        add '-H:ReflectionConfigurationFiles=graal-reflection-config.json'
+        add '--no-fallback'
+        add '--enable-all-security-services'
+        add options.traceClassInitialization('MainKt')
+        add '--report-unsupported-elements-at-runtime'
+    }
 }

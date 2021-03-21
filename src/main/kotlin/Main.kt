@@ -140,7 +140,7 @@ suspend fun createApi(clientId: String, clientSecret: String): SpotifyClientApi 
         SpotifyUserAuthorization(authorizationCode = authCode)
     ).build()
 
-    savedTokenFile.writeText(Json.encodeToString(api.token))
+    savedTokenFile.writeText(Json.encodeToString(Token.serializer(),api.token))
 
     return api
 }
@@ -161,7 +161,7 @@ suspend fun apiFromSavedRefreshToken(tokenFile: File, clientId: String, clientSe
         clientId,
         clientSecret,
         redirectUri,
-        Json.decodeFromString<Token>(savedToken)
+        Json.decodeFromString(Token.serializer(), savedToken)
     ).build()
 
     try {

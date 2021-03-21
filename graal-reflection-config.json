@@ -1,0 +1,48 @@
+[
+  {
+    "name": "kotlin.internal.jdk8.JDK8PlatformImplementations",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "io.ktor.utils.io.pool.DefaultPool",
+    "allDeclaredFields": true,
+    "fields": [
+      {
+        "name": "top",
+        "allowUnsafeAccess": true,
+        "allowWrite": true
+      }
+    ]
+  },
+  {
+    "name": "io.ktor.network.selector.InterestSuspensionsMap",
+    "allDeclaredFields": true,
+    "fields": [
+      {
+        "name": "readHandlerReference",
+        "allowUnsafeAccess": true,
+        "allowWrite": true
+      },
+      {
+        "name": "writeHandlerReference",
+        "allowUnsafeAccess": true,
+        "allowWrite": true
+      },
+      {
+        "name": "connectHandlerReference",
+        "allowUnsafeAccess": true,
+        "allowWrite": true
+      },
+      {
+        "name": "acceptHandlerReference",
+        "allowUnsafeAccess": true,
+        "allowWrite": true
+      }
+    ]
+  }
+]
