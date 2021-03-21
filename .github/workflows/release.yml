@@ -21,9 +21,11 @@ jobs:
 
       # No need to install normal Java, you can build application only with GraalVM
       - name: setup GraalVM
-        uses: DeLaGuardo/setup-graalvm@2.0
+        uses: DeLaGuardo/setup-graalvm@4.0
         with:
-          graalvm-version: "20.0.0.java11"
+          graalvm: "21.0.0.2"
+          java: "java11"
+          arch: 'amd64'
 
       # (Optional) Install native-image
       - name: install native-image
