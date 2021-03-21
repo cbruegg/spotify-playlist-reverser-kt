@@ -121,8 +121,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
-          asset_name: spotify-playlist-reverser-kt.exe
-          asset_path: build/bin/spotify-playlist-reverser-kt-${{ matrix.os }}-${{ steps.tagName.outputs.tag }}.exe
+          asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}-${{ steps.tagName.outputs.tag }}.exe
+          asset_path: build/bin/spotify-playlist-reverser-kt.exe
           asset_content_type: application/octet-stream
 
       # Uploads fat jar (only done on Windows so it's only done once)
