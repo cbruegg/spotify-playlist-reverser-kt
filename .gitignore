@@ -4,3 +4,6 @@
 /.idea
 /.spotify_token.txt
 /local.properties
+/build
+/buildSrc/.gradle
+/buildSrc/build
