@@ -45,7 +45,7 @@ jobs:
 
       # Uploads binary
       - name: upload ${{ matrix.os }} image
-        uses: actions/upload-artifacts@v1
+        uses: actions/upload-artifact@v2
         with:
-          name: app-${{ matrix.os }}
-          path: build/native-image/app
+          name: spotify-playlist-reverser-kt-${{ matrix.os }}
+          path: build/native-image/spotify-playlist-reverser-kt
