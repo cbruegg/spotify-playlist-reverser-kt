@@ -49,7 +49,7 @@ java {
 }
 
 nativeImage {
-    graalVmHome = ext.graalVmHome
+    graalVmHome = rootProject.extensions.getByName("ext").graalVmHome
     mainClass = application.mainClassName
     executableName = project.name
     outputDirectory = file("$buildDir/bin")
