@@ -12,7 +12,7 @@ jobs:
     name: build and upload release
     strategy:
       matrix:
-        os: [macos, ubuntu]
+        os: [windows, macos, ubuntu]
     runs-on: ${{ matrix.os }}-latest
 
     steps:
@@ -45,9 +45,18 @@ jobs:
           RUNNING_OS: ${{ matrix.os }}
           PROJECT_VERSION: ${{ steps.config.outputs.projectVersion }}
 
-      # Uploads binary
+      # Uploads binary for mac, ubuntu
       - name: upload ${{ matrix.os }} image
         uses: actions/upload-artifact@v2
+        if: startsWith(matrix.os, 'windows') != true
         with:
           name: spotify-playlist-reverser-kt-${{ matrix.os }}
           path: build/bin/spotify-playlist-reverser-kt
+
+      # Uploads binary for windows
+      - name: upload ${{ matrix.os }} image
+        uses: actions/upload-artifact@v2
+        if: startsWith(matrix.os, 'windows')
+        with:
+          name: spotify-playlist-reverser-kt-${{ matrix.os }}
+          path: build/bin/spotify-playlist-reverser-kt.exe
