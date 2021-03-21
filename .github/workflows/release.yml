@@ -47,6 +47,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
 
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+
       - name: Enable Developer Command Prompt on Windows
         uses: ilammy/msvc-dev-cmd@v1.7.0
 
@@ -99,7 +102,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
-          asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}-${{ github.ref }}
+          asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}-${{ steps.tagName.outputs.tag }}
           asset_path: build/bin/spotify-playlist-reverser-kt
           asset_content_type: application/octet-stream
 
@@ -119,7 +122,7 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.exe
-          asset_path: build/bin/spotify-playlist-reverser-kt-${{ matrix.os }}-${{ github.ref }}.exe
+          asset_path: build/bin/spotify-playlist-reverser-kt-${{ matrix.os }}-${{ steps.tagName.outputs.tag }}.exe
           asset_content_type: application/octet-stream
 
       # Uploads fat jar (only done on Windows so it's only done once)
@@ -138,5 +141,5 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.jar
-          asset_path: build/libs/spotify-playlist-reverser-kt-all-${{ github.ref }}.jar
+          asset_path: build/libs/spotify-playlist-reverser-kt-all-${{ steps.tagName.outputs.tag }}.jar
           asset_content_type: application/octet-stream
