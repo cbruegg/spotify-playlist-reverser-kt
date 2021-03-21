@@ -12,9 +12,8 @@ def properties = new Properties()
 def localPropertiesFile = project.rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
     properties.load(localPropertiesFile.newDataInputStream())
-}
-ext.graalVmHome = properties.getProperty("graalvm.home")
-if (ext.graalVmHome == null) {
+    ext.graalVmHome = properties.getProperty("graalvm.home")
+} else {
     ext.graalVmHome = System.getProperty('java.home')
 }
 
