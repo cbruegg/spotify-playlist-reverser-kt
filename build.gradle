@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'com.cbruegg'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 def properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
