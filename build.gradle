@@ -9,7 +9,10 @@ group 'com.cbruegg'
 version '1.0.0'
 
 def properties = new Properties()
-properties.load(project.rootProject.file("local.properties").newDataInputStream())
+def localPropertiesFile = project.rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.newDataInputStream())
+}
 ext.graalVmHome = properties.getProperty("graalvm.home")
 if (ext.graalVmHome == null) {
     ext.graalVmHome = System.getProperty('java.home')
