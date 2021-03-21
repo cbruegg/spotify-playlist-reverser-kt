@@ -98,7 +98,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}
           asset_path: build/bin/spotify-playlist-reverser-kt
           asset_content_type: application/octet-stream
@@ -117,7 +117,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.exe
           asset_path: build/bin/spotify-playlist-reverser-kt.exe
           asset_content_type: application/octet-stream
@@ -136,7 +136,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.jar
           asset_path: build/libs/spotify-playlist-reverser-kt-1.0.0-all.jar
           asset_content_type: application/octet-stream
