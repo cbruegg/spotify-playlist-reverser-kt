@@ -128,7 +128,7 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         with:
           name: spotify-playlist-reverser-kt.jar
-          path: build/libs/spotify-playlist-reverser-kt-1.0.0-all.jar
+          path: build/libs/spotify-playlist-reverser-kt-all.jar
 
       - name: release fat jar
         uses: actions/upload-release-asset@v1
