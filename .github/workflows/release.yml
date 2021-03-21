@@ -28,7 +28,7 @@ jobs:
   # This job builds and uploads binary
   build-and-upload:
     name: build and upload
-    needs: create_release # we need to know the upload URL
+    needs: create-release # we need to know the upload URL
 
     strategy:
       matrix:
