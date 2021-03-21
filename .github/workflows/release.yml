@@ -32,16 +32,16 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-latest, macos-latest, ubuntu-latest ]
+        os: [ windows, macos, ubuntu ]
         gu-binary: [ gu, gu.cmd ]
         exclude:
-          - os: ubuntu-latest
+          - os: ubuntu
             gu-binary: gu.cmd
-          - os: macos-latest
+          - os: macos
             gu-binary: gu.cmd
-          - os: windows-latest
+          - os: windows
             gu-binary: gu
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
       - name: checkout
@@ -99,7 +99,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
-          asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}
+          asset_name: spotify-playlist-reverser-kt-${{ matrix.os }}-${{ github.ref }}
           asset_path: build/bin/spotify-playlist-reverser-kt
           asset_content_type: application/octet-stream
 
@@ -119,7 +119,7 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.exe
-          asset_path: build/bin/spotify-playlist-reverser-kt.exe
+          asset_path: build/bin/spotify-playlist-reverser-kt-${{ matrix.os }}-${{ github.ref }}.exe
           asset_content_type: application/octet-stream
 
       # Uploads fat jar (only done on Windows so it's only done once)
@@ -138,5 +138,5 @@ jobs:
         with:
           upload_url: ${{ needs.create-release.outputs.upload_url }}
           asset_name: spotify-playlist-reverser-kt.jar
-          asset_path: build/libs/spotify-playlist-reverser-kt-1.0.0-all.jar
+          asset_path: build/libs/spotify-playlist-reverser-kt-all-${{ github.ref }}.jar
           asset_content_type: application/octet-stream

@@ -62,3 +62,7 @@ nativeImage {
         add '--report-unsupported-elements-at-runtime'
     }
 }
+
+shadowJar {
+    archiveVersion.set("") // Don't include version in file name (makes release.yml easier)
+}
