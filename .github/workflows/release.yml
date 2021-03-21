@@ -57,6 +57,14 @@ jobs:
           RUNNING_OS: ${{ matrix.os }}
           PROJECT_VERSION: ${{ steps.config.outputs.projectVersion }}
 
+      # Builds fat jar (only done on Windows so it's only done once)
+      - name: "build fat jar"
+        run: ./gradlew shadowJar
+        if: startsWith(matrix.os, 'windows')
+        env:
+          RUNNING_OS: ${{ matrix.os }}
+          PROJECT_VERSION: ${{ steps.config.outputs.projectVersion }}
+
       # Uploads binary for mac, ubuntu
       - name: upload ${{ matrix.os }} image
         uses: actions/upload-artifact@v2
@@ -66,9 +74,17 @@ jobs:
           path: build/bin/spotify-playlist-reverser-kt
 
       # Uploads binary for windows
-      - name: upload ${{ matrix.os }} image
+      - name: upload windows image
         uses: actions/upload-artifact@v2
         if: startsWith(matrix.os, 'windows')
         with:
           name: spotify-playlist-reverser-kt-${{ matrix.os }}
           path: build/bin/spotify-playlist-reverser-kt.exe
+
+      # Uploads fat jar (only done on Windows so it's only done once)
+      - name: upload fat jar
+        uses: actions/upload-artifact@v2
+        if: startsWith(matrix.os, 'windows')
+        with:
+          name: spotify-playlist-reverser-kt.jar
+          path: build/libs/spotify-playlist-reverser-kt-1.0.0-all.jar
