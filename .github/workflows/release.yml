@@ -10,6 +10,7 @@ jobs:
   # This job builds and uploads binary
   build-and-upload:
     name: build and upload release
+
     strategy:
       matrix:
         os: [ windows-latest, macos-latest, ubuntu-latest ]
@@ -26,6 +27,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
+
+      - name: Enable Developer Command Prompt on Windows
+        uses: ilammy/msvc-dev-cmd@v1.7.0
 
       # No need to install normal Java, you can build application only with GraalVM
       - name: setup GraalVM
