@@ -92,12 +92,12 @@ fun parseArgs(args: Array<String>): Args {
     val targetPlaylistName by parser.option(
         ArgType.String,
         fullName = "target-playlist-name",
-        description = "Name of the target playlist. If it already exists, specify --override-existing."
+        description = "Name of the target playlist. If it already exists, specify --override-existing. Defaults to \"\${sourcePlaylist.name} (reversed)\""
     )
     val targetPlaylistDescription by parser.option(
         ArgType.String,
         fullName = "target-playlist-description",
-        description = "If the target playlist does not exist yet, this will be used as its description."
+        description = "If the target playlist does not exist yet, this will be used as its description. Defaults to an empty value."
     )
     val overrideExisting by parser.option(
         ArgType.Boolean,
