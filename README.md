@@ -10,3 +10,5 @@ Options:
     --override-existing [false] -> If a playlist with the same target name already exists, override it.
     --help, -h -> Usage info
 ```
+
+Binaries are available in the [releases section](https://github.com/cbruegg/spotify-playlist-reverser-kt/releases).
