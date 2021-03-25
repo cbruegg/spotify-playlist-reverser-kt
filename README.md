@@ -12,4 +12,4 @@ Options:
     --help, -h -> Usage info
 ```
 
-Binaries are available in the [releases section](https://github.com/cbruegg/spotify-playlist-reverser-kt/releases).
+Binaries are available in the [releases section](https://github.com/cbruegg/spotify-playlist-reverser-kt/releases). This includes x64 builds for Windows, Mac and Linux, as well as a platform-independent Java jar.
