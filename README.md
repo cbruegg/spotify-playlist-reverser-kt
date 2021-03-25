@@ -12,4 +12,7 @@ Options:
     --help, -h -> Usage info
 ```
 
+On first use, you'll have to authorize the tool through the URL it prints. In case you're running the tool on a system without a browser, just open the URL in another browser and copy the `localhost`-URL from your browser after authorization. Then open a new terminal, connect to the system without the browser, and finally run `curl <the-localhost-URL>`.
+On subsequent uses, the tool will use cached credentials.
+
 Binaries are available in the [releases section](https://github.com/cbruegg/spotify-playlist-reverser-kt/releases). This includes x64 builds for Windows, Mac and Linux, as well as a platform-independent Java jar.
