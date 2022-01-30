@@ -51,7 +51,7 @@ jobs:
         id: tagName
 
       - name: Enable Developer Command Prompt on Windows
-        uses: ilammy/msvc-dev-cmd@v1.7.0
+        uses: ilammy/msvc-dev-cmd@v1.10.0
 
       # No need to install normal Java, you can build application only with GraalVM
       - name: setup GraalVM
